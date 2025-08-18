@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface Feature {
   id: string;
@@ -67,7 +68,9 @@ const Feature73 = ({
           {features[0] && (
             <div className="border-border flex flex-col overflow-clip rounded-xl border md:col-span-2 md:grid md:grid-cols-2 md:gap-6 lg:gap-8">
               <div className="md:min-h-[24rem] lg:min-h-[28rem] xl:min-h-[32rem]">
-                <img
+                <Image
+                  width={0}
+                  height={0}
                   src={features[0].image}
                   alt={features[0].title}
                   className="aspect-16/9 h-full w-full object-cover object-center"
@@ -89,7 +92,9 @@ const Feature73 = ({
               className="border-border flex flex-col overflow-clip rounded-xl border"
             >
               <div>
-                <img
+                <Image
+                  width={0}
+                  height={0}
                   src={feature.image}
                   alt={feature.title}
                   className="aspect-16/9 h-full w-full object-cover object-center"

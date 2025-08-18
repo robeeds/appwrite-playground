@@ -1,5 +1,5 @@
 import { Wifi, Zap } from "lucide-react";
-
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 interface Hero115Props {
@@ -64,7 +64,9 @@ const Hero115 = ({
               )}
             </div>
           </div>
-          <img
+          <Image
+            width={0}
+            height={0}
             src={imageSrc}
             alt={imageAlt}
             className="mx-auto h-full max-h-[524px] w-full max-w-5xl rounded-2xl object-cover"
