@@ -2,7 +2,7 @@
 // Centralized Appwrite auth helpers + form validation for register & login
 // NOTE: Import this module only from client-side code (e.g., Next.js Client Components or use dynamic import with ssr:false)
 
-import { Client, Account, ID, Models, OAuthProvider, AppwriteException } from "appwrite";
+import { Client, Account, ID, Avatars, Models, OAuthProvider, AppwriteException } from "appwrite";
 import { z } from "zod";
 
 /**
@@ -159,11 +159,23 @@ export async function logoutAll(): Promise<Result<true>> {
   }
 }
 
+/** Get the current user **/
 export async function getCurrentUser(): Promise<Models.User<Models.Preferences> | null> {
   try {
     const account = getAccount();
     return await account.get();
   } catch {
+    return null;
+  }
+}
+
+/** Retrieve the User avatar (Currently only supports intiitals)**/
+export async function getUserAvatar(name: string): Promise<string | null> {
+  try {
+    const avatars = new Avatars(getAccount().client);
+    return await avatars.getInitials(name, 32, 32);
+  } catch (err: unknown) {
+    console.error("Failed to fetch user avatar", err);
     return null;
   }
 }

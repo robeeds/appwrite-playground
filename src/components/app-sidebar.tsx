@@ -1,12 +1,10 @@
 "use client";
 
-import * as React from "react";
+import React from "react";
 import {
-  IconCamera,
   IconDashboard,
   IconDatabase,
   IconFileAi,
-  IconFileDescription,
   IconHelp,
   IconInnerShadowTop,
   IconSearch,
@@ -28,64 +26,11 @@ import {
 } from "@/components/ui/sidebar";
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: IconDashboard,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
     },
   ],
   navSecondary: [
@@ -111,10 +56,22 @@ const data = {
       url: "#",
       icon: IconDatabase,
     },
+    {
+      name: "Test",
+      url: "#test",
+      icon: IconFileAi,
+    },
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  user,
+  avatar,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & {
+  user: { id: string; name: string; email: string };
+  avatar?: string | null;
+}) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -140,7 +97,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} avatar={avatar} />
       </SidebarFooter>
     </Sidebar>
   );
