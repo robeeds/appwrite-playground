@@ -64,6 +64,8 @@ const Signup1 = ({
         <div className="flex flex-col items-center gap-6 lg:justify-start">
           <a href={logo.url}>
             <Image
+              width={0}
+              height={0}
               src={logo.src}
               alt={logo.alt}
               title={logo.title}
